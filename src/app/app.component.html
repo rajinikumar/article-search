@@ -1,0 +1,49 @@
+<div class="wrapper container">
+    <header class="header">
+      <a href="#">
+      <h1>Local World Article Search</h1></a>
+    </header>
+
+
+    <div class="jumbotron search-container">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus bibendum eget leo ullamcorper varius. Aliquam eu nulla tortor. Phasellus ut hendrerit ante. Sed urna elit, tincidunt vel volutpat et, iaculis in erat. Morbi egestas nunc at rhoncus pretium.</p>
+
+
+      <div class="row search-option">
+        <form class="form-wrapper row">
+          <div class="input-group col-md-10">
+            <input [(ngModel)]="articleName" name="name" class="form-control" placeholder="Search for..." required> <span class="input-group-btn"><button (click)="searchArticles();" class="btn btn-search" type="button"><i class="fa fa-search fa-fw"></i> Search</button></span>
+
+          </div>
+        </form>
+      </div>
+      <div class="search-details row">
+        <div *ngFor = "let article of articles| paginate: { itemsPerPage: 2, currentPage: p, totalItems: totalNumber }" class="well article-container col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-lg-10 col-md-10 col-sm-10">
+          <div class="col-lg-10 col-md-11 col-sm-12 col-sx-12">
+            <a href="/article/{{article._id}}">
+            <p>{{article._source.title}}</p></a><span class="article-author">Created By: <span>{{article._source.created_by_user_name}}</span></span>
+          </div>
+
+          <div class="col-lg-1 col-md-1 col-sm-5 col-sx-5">
+            <p class="article-text"><a href="https://google.com" target="_blank"><i aria-hidden="true" class="fa fa-file-text-o"></i></a>
+            </p>
+          </div>
+
+          <div class="col-lg-1 col-md-1 col-sm-5 col-sx-5">
+            <p class="article-pdf"><a href="https://google.com" target="_blank"><i aria-hidden="true" class="fa fa-file-pdf-o"></i></a>
+            </p>
+          </div>
+        </div>
+        <div  class="col-lg-10 col-md-11 col-sm-12 col-sx-12">
+          <!-- <div class="spinner" [ngClass]="{ 'hidden': !loading }"></div> -->
+          <pagination-controls *ngIf="articles" class="pagination-controls" (pageChange)="searchArticles($event)" previousLabel=" " nextLabel=" "></pagination-controls>
+        </div>
+      </div>
+      
+    </div>
+
+
+    <footer class="footer">
+      <p>Local World &copy; 2017</p>
+    </footer>
+  </div>

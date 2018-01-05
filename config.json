@@ -1,0 +1,5 @@
+{
+	"path": "https://s3-eu-west-1.amazonaws.com",
+	"location" : "articles-pdf",
+	"folder" : "testfolder"
+}
