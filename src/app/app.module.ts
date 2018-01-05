@@ -6,7 +6,7 @@ import { FormsModule , ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { ArticleService } from './article.service';
-import {NgxPaginationModule} from 'ngx-pagination'; //pagination module
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   declarations: [

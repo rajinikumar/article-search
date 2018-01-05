@@ -18,7 +18,7 @@
         </form>
       </div>
       <div class="search-details row">
-        <div *ngFor = "let article of articles| paginate: { itemsPerPage: 2, currentPage: p, totalItems: totalNumber }" class="well article-container col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-lg-10 col-md-10 col-sm-10">
+        <div *ngFor = "let article of articles| paginate: { itemsPerPage: itemsPerPage, currentPage: defaultPageNo, totalItems: totalNumber }" class="well article-container col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-lg-10 col-md-10 col-sm-10">
           <div class="col-lg-10 col-md-11 col-sm-12 col-sx-12">
             <a href="/article/{{article._id}}">
             <p>{{article._source.title}}</p></a><span class="article-author">Created By: <span>{{article._source.created_by_user_name}}</span></span>

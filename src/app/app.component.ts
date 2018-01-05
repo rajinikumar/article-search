@@ -10,32 +10,23 @@ import { ArticleService } from './article.service';
 export class AppComponent {
   articles : Array<any>;
   articleName : String;
-  p: number = 1; //current page number set to 1
-/*  loading: boolean;*/
+  defaultPageNo: number = 1;
+  itemsPerPage : number = 20;
   totalNumber: number;
 
   constructor(private _articleService: ArticleService) {
-  //this.articles = [{"headline" : "Article 1" , "editor" : "rajini", "body" : "<p>test</p>"},{"headline" : "Article 2" , "editor" : "http://abcd.com", "body" : "<p>test</p>"},{"headline" : "Article 3" , "editor" : "http://abcd.com", "body" : "<p>test</p>"},{"headline" : "Article 4" , "editor" : "http://abcd.com", "body" : "<p>test</p>"}];
-    //this._articleService.getUsers().subscribe(res => this.articles = res);
     this._articleService.getUsers({name: this.articleName}).subscribe(res => { this.articles = res.hits , this.totalNumber = res.total });
   }
 
   searchArticles(currentPageNumber: number){
-
-/*  	console.log(this.articles);*/
-/*    this.loading = true;*/
-    this.p = currentPageNumber;
+    this.defaultPageNo = currentPageNumber;
     console.log('current page number is', currentPageNumber);
-    /*this.totalNumber = this.articles.length;
-    console.log(this.articles.length);*/
-/*    this.loading = false;*/
-
-
   	if(!this.articleName){
   		return;
   	}
   	console.log('Search string = ' + this.articleName);
-  	this._articleService.getUsers({name: this.articleName, pageNumber : currentPageNumber}).subscribe(res =>  { this.articles = res.hits , this.totalNumber = res.total });
+  	this._articleService.getUsers({name: this.articleName, pageNumber : currentPageNumber}).subscribe(res =>  { this.articles = res.hits , this.totalNumber = res.total
+  });
   }
 
    ngOnInit() {
