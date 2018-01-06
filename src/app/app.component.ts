@@ -13,6 +13,12 @@ export class AppComponent {
   defaultPageNo: number = 1;
   itemsPerPage : number = 20;
   totalNumber: number;
+  public show:boolean = false;
+
+  toggle(i) {
+    console.log(JSON.stringify(this.articles[i]));
+    this.show = !this.show;
+  }
 
   constructor(private _articleService: ArticleService) {
     this._articleService.getUsers({name: this.articleName}).subscribe(res => { this.articles = res.hits , this.totalNumber = res.total });
@@ -34,3 +40,5 @@ export class AppComponent {
     }
 
 }
+
+

@@ -18,9 +18,9 @@
         </form>
       </div>
       <div class="search-details row">
-        <div *ngFor = "let article of articles| paginate: { itemsPerPage: itemsPerPage, currentPage: defaultPageNo, totalItems: totalNumber }" class="well article-container col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-lg-10 col-md-10 col-sm-10">
+        <div *ngFor = "let article of articles | paginate: { itemsPerPage: itemsPerPage, currentPage: defaultPageNo, totalItems: totalNumber } ; index as i" class="well article-container col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-lg-10 col-md-10 col-sm-10">
           <div class="col-lg-10 col-md-11 col-sm-12 col-sx-12">
-            <a href="/article/{{article._id}}">
+            <a href="#" (click)="toggle(i)" >
             <p>{{article._source.title}}</p></a><span class="article-author">Created By: <span>{{article._source.created_by_user_name}}</span></span>
           </div>
 
@@ -32,6 +32,12 @@
           <div class="col-lg-1 col-md-1 col-sm-5 col-sx-5">
             <p class="article-pdf"><a href="https://google.com" target="_blank"><i aria-hidden="true" class="fa fa-file-pdf-o"></i></a>
             </p>
+          </div>
+
+          <div>
+            <ng-container *ngIf="show">
+              <p>{{article._source.body}}</p>
+            </ng-container>
           </div>
         </div>
         <div  class="col-lg-10 col-md-11 col-sm-12 col-sx-12">
