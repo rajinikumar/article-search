@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ViewContainerRef } from '@angular/core';
+import { Overlay } from 'ngx-modialog';
+import { Modal } from 'ngx-modialog/plugins/bootstrap';
+
 import { ArticleService } from './article.service';
 
 @Component({
@@ -15,13 +18,19 @@ export class AppComponent {
   totalNumber: number;
   public show:boolean = false;
 
-  toggle(i) {
-    console.log(JSON.stringify(this.articles[i]));
-    this.show = !this.show;
+  constructor(private _articleService: ArticleService,public modal: Modal) {
+    this._articleService.getUsers({name: this.articleName}).subscribe(res => { this.articles = res.hits , this.totalNumber = res.total });
   }
 
-  constructor(private _articleService: ArticleService) {
-    this._articleService.getUsers({name: this.articleName}).subscribe(res => { this.articles = res.hits , this.totalNumber = res.total });
+  onClick(article) {
+    const dialogRef = this.modal.alert()
+        .size('lg')
+        .showClose(true)
+        .title(article._source.title)
+        .body(article._source.body)
+        .open();
+
+    dialogRef.result.then( result => console.log(`The result is: ${result}`) );
   }
 
   searchArticles(currentPageNumber: number){

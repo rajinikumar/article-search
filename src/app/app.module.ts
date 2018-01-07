@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { FormsModule , ReactiveFormsModule } from '@angular/forms';
+import { ModalModule } from 'ngx-modialog';
+import { BootstrapModalModule } from 'ngx-modialog/plugins/bootstrap';
 
 
 import { AppComponent } from './app.component';
@@ -16,7 +18,9 @@ import {NgxPaginationModule} from 'ngx-pagination';
     BrowserModule,
     HttpModule,
     FormsModule,
-    NgxPaginationModule //pagination module
+    NgxPaginationModule,
+    ModalModule.forRoot(),
+    BootstrapModalModule
   ],
   providers: [ArticleService],
   bootstrap: [AppComponent]
